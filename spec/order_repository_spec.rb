@@ -25,4 +25,15 @@ def reset_orders_table
     expect(orders[1].customer_name).to eq("Customer_name2")
     expect(orders[1].date_ordered).to eq('2006-07-14')
   end
+  it 'Should test to see if find method returns a single order' do
+    repo = OrderRepository.new
+    order = repo.find(3)
+    order.id 
+    order.customer_name
+    order.date_ordered
+    expect(order.id).to eq(3)
+    expect(order.customer_name).to eq("Customer_name3")
+
+
+  end
 end
