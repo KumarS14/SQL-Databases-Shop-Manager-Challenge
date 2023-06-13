@@ -1,10 +1,12 @@
+require 'order.rb'
+require 'order_repository.rb'
 def reset_orders_table
     seed_sql = File.read('spec/seeds_orders.sql')
-    connection = PG.connect({ host: '127.0.0.1', dbname: 'orders' })
+    connection = PG.connect({ host: '127.0.0.1', dbname: 'order_items_test' })
     connection.exec(seed_sql)
   end
   
-  describe orderRepository do
+  describe OrderRepository do
     before(:each) do 
       reset_orders_table
     end
