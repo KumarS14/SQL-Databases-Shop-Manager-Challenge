@@ -13,7 +13,7 @@ SimpleCov.start
 
 # Make sure this connects to your test database
 # (its name should end with '_test')
-DatabaseConnection.connect('your_database_name_test')
+DatabaseConnection.connect('order_items_test')
 # file: lib/database_connection.rb
 
 # This class is a thin "wrapper" around the
