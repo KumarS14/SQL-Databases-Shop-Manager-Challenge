@@ -8,45 +8,63 @@ _Copy this recipe template to design and create two related database tables from
 # EXAMPLE USER STORY:
 # (analyse only the relevant part - here the final line).
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of albums' titles.
+As a shop manager
+So I can know which items I have in stock
+I want to keep a list of my shop items with their name and unit price.
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of albums' release years.
+As a shop manager
+So I can know which items I have in stock
+I want to know which quantity (a number) I have for each item.
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of artists' names.
+As a shop manager
+So I can manage items
+I want to be able to create a new item.
 
-As a music lover,
-So I can organise my records,
-I want to know each album's artist.
+As a shop manager
+So I can know which orders were made
+I want to keep a list of orders with their customer name.
+
+As a shop manager
+So I can know which orders were made
+I want to assign each order to their corresponding item.
+
+As a shop manager
+So I can know which orders were made
+I want to know on which date an order was placed. 
+
+As a shop manager
+So I can manage orders
+I want to be able to create a new order.
 ```
 
 ```
 Nouns:
-
-album, title, release year, artist, name
+item, name, unit_price, quantity
+order, customer_name, date, 
+```
+Extra Features:
+    Create a new item
+    Create a new order
+    add kernal interface
 ```
 
 ## 2. Infer the Table Name and Columns
 
 Put the different nouns in this table. Replace the example with your own nouns.
 
-| Record                | Properties          |
-| --------------------- | ------------------  |
-| album                 | title, release year
-| artist                | name
+| Record                | Properties                 |
+| --------------------- | ------------------         |
+| item                  | name, unit_price, quantity |
+| order                 | customer_name, date_orderd |
+                     
 
-1. Name of the first table (always plural): `albums` 
+1. Name of the first table (always plural): `items` 
 
-    Column names: `title`, `release_year`
+    Column names: `name`, `unit_price`, `quantity`
 
-2. Name of the second table (always plural): `artists` 
+2. Name of the second table (always plural): `orders` 
 
-    Column names: `name`
+    Column names: `customer_name`, `date_orderd`
 
 ## 3. Decide the column types.
 
@@ -59,14 +77,16 @@ Remember to **always** have the primary key `id` as a first column. Its type wil
 ```
 # EXAMPLE:
 
-Table: albums
-id: SERIAL
-title: text
-release_year: int
-
-Table: artists
+Table: items
 id: SERIAL
 name: text
+unit_price: int
+quantity: int
+
+Table: orders
+id: SERIAL
+customer_name: text
+date_orderd: date
 ```
 
 ## 4. Decide on The Tables Relationship
@@ -75,8 +95,8 @@ Most of the time, you'll be using a **one-to-many** relationship, and will need 
 
 To decide on which one, answer these two questions:
 
-1. Can one [TABLE ONE] have many [TABLE TWO]? (Yes/No)
-2. Can one [TABLE TWO] have many [TABLE ONE]? (Yes/No)
+1. Can one [order] have many [items]? (Yes/No) [YES]
+2. Can one [item] have many [orders]? (Yes/No) [NO]
 
 You'll then be able to say that:
 
@@ -89,14 +109,14 @@ Replace the relevant bits in this example with your own:
 ```
 # EXAMPLE
 
-1. Can one artist have many albums? YES
-2. Can one album have many artists? NO
+1. Can one order have many items? YES
+2. Can one item have many orders? NO
 
 -> Therefore,
--> An artist HAS MANY albums
--> An album BELONGS TO an artist
+-> An order HAS MANY items
+-> An item BELONGS TO an order
 
--> Therefore, the foreign key is on the albums table.
+-> Therefore, the foreign key is on the items table.
 ```
 
 *If you can answer YES to the two questions, you'll probably have to implement a Many-to-Many relationship, which is more complex and needs a third table (called a join table).*
@@ -105,25 +125,27 @@ Replace the relevant bits in this example with your own:
 
 ```sql
 -- EXAMPLE
--- file: albums_table.sql
+-- file: order_items_table.sql
 
 -- Replace the table name, columm names and types.
 
 -- Create the table without the foreign key first.
-CREATE TABLE artists (
+CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
-  name text
+  customer_name text
+  date_orderd DATE,
 );
 
 -- Then the table with the foreign key first.
-CREATE TABLE albums (
+CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  title text,
-  release_year int,
+  name text,
+  unit_price int,
+  quantity int,
 -- The foreign key name is always {other_table_singular}_id
-  artist_id int,
-  constraint fk_artist foreign key(artist_id)
-    references artists(id)
+  order_id int,
+  constraint fk_orderforeign key(order_id)
+    references orders(id)
     on delete cascade
 );
 
@@ -132,7 +154,7 @@ CREATE TABLE albums (
 ## 5. Create the tables.
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 database_name < items_table.sql
 ```
 
 
