@@ -20,7 +20,6 @@ class Application
       1 = list all shop items
       2 = create a new item
       3 = list all orders
-      4 = quit
       5 = create a new order"
     table = @io.gets.to_i
    @item_repository.all.each{|i| @io.puts "item_name: #{i.item_name}  unit_price: #{i.unit_price} quantity: #{i.quantity} order_id #{i.order_id} "} if table === 1
