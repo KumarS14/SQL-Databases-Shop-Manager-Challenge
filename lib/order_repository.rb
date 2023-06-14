@@ -1,4 +1,4 @@
-require 'order.rb'
+require_relative 'order.rb'
 class OrderRepository
     def all 
         sql = 'SELECT id, customer_name, date_ordered FROM orders;'
