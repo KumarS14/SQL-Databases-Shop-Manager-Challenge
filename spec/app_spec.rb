@@ -57,4 +57,26 @@ describe Application do
             customer name: New_Customer_name  date ordered: 2023-06-13")
       app.run
     end
+    it 'mock user creating new order' do
+        io = double :kernel
+      app = Application.new(
+        'order_items_test',
+        io,
+        ItemRepository.new,
+        OrderRepository.new
+      )
+      allow(io).to receive(:puts).and_return("What do you want to do?
+        1 = list all shop items
+        2 = create a new item
+        3 = list all orders
+        4 = create a new order")
+        expect(io).to receive(:gets).and_return(5)
+        expect(io).to receive(:puts).and_return("Enter order id: ")
+        allow(io).to receive(:gets).with(1)
+        allow(io).to receive(:puts).and_return("Enter customer name:")
+        allow(io).to receive(:gets).with("Customer Name Test")
+        allow(io).to receive(:puts).and_return("Enter order date (YYYY-MM-DD): ")
+        allow(io).to receive(:gets).with("2003-09-14")
+      app.run
+    end
 end
