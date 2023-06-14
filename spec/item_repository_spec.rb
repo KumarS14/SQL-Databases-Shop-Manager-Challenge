@@ -15,6 +15,7 @@ def reset_items_table
         repo = ItemRepository.new
         items = repo.all
         expect(items.length).to eq(4)
+        expect(items[0].id).to eq(1)
         expect(items[0].item_name).to eq("Item_test1")
         expect(items[0].unit_price).to eq(11.56)
         expect(items[0].quantity).to eq(3)
@@ -22,5 +23,6 @@ def reset_items_table
 
 
     end
+    it 'Should find a specific item and return it'
 
 end
