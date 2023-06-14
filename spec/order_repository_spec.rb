@@ -33,7 +33,17 @@ def reset_orders_table
     order.date_ordered
     expect(order.id).to eq(3)
     expect(order.customer_name).to eq("Customer_name3")
+  end
 
-
+  it 'Test to see if create method creates a new order' do
+    repo = OrderRepository.new
+    order = Order.new
+    order.id = 10
+    order.customer_name = 'New_Customer_name'
+    order.date_ordered = '2023-06-13'
+    repo.create(order)
+    all_orders = repo.all
+    expect(all_orders.length).to eq(5)
+    expect(all_orders.last.customer_name).to eq("New_Customer_name")
   end
 end
