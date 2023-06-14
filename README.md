@@ -1,3 +1,5 @@
+# Shop Manager
+
 Shop Manager is a simple application that allows shop managers to keep track of their shop items and orders. It provides functionalities to manage items, view stock quantities, create new items, and manage orders with customer names and order dates.
 
 ## User Stories
