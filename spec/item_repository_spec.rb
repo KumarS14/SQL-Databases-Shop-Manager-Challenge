@@ -27,6 +27,10 @@ def reset_items_table
         repo = ItemRepository.new
         item = repo.find(4)
         expect(item.id).to eq(4)
+        expect(item.item_name).to eq("Item_test4")
+        expect(item.unit_price).to eq(14.66)
+        expect(item.quantity).to eq(2)
+        expect(item.order_id).to eq(3)
 
     end
 
