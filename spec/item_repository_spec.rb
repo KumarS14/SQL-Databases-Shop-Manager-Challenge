@@ -23,6 +23,11 @@ def reset_items_table
 
 
     end
-    it 'Should find a specific item and return it'
+    it 'Should find a specific item and return it' do
+        repo = ItemRepository.new
+        item = repo.find(4)
+        expect(item.id).to eq(4)
+
+    end
 
 end
