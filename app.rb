@@ -21,9 +21,9 @@ class Application
       2 = create a new item
       3 = list all orders
       4 = create a new order"
-    table = @io.gets.chomp.to_i
+    table = @io.gets.to_i
    @item_repository.all.each{|i| @io.puts "item_name: #{i.item_name}  unit_price: #{i.unit_price} quantity: #{i.quantity} order_id #{i.order_id} "} if table === 1
-   @order_repository.all.each{|i| @io.puts "title: #{i.title}  content: #{i.content} views: #{i.views}"} if table === 2
+   @order_repository.all.each{|i| @io.puts "customer name: #{i.customer_name}  date ordered: #{i.date_ordered}"} if table === 3
    
    # Use `@io.puts` or `@io.gets` to
     # write output and ask for item input.
