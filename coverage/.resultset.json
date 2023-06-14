@@ -1,6 +1,69 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/sonjaykumar/aftercourse/projects/shop_manager/spec/item_repository_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/sonjaykumar/aftercourse/projects/shop_manager/lib/item.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/sonjaykumar/aftercourse/projects/shop_manager/lib/item_repository.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/sonjaykumar/aftercourse/projects/shop_manager/spec/order_repository_spec.rb": {
         "lines": [
           1,
@@ -107,6 +170,6 @@
         ]
       }
     },
-    "timestamp": 1686736156
+    "timestamp": 1686738557
   }
 }
