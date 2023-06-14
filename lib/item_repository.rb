@@ -1,3 +1,4 @@
+require_relative 'item.rb'
 class ItemRepository
     def all
         sql = 'SELECT id, item_name, unit_price, quantity, order_id FROM items;'
