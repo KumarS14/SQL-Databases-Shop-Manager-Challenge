@@ -79,4 +79,30 @@ describe Application do
         allow(io).to receive(:gets).with("2003-09-14")
       app.run
     end
+    it 'mock user creating new item' do
+        io = double :kernel
+      app = Application.new(
+        'order_items_test',
+        io,
+        ItemRepository.new,
+        OrderRepository.new
+      )
+      allow(io).to receive(:puts).and_return("What do you want to do?
+        1 = list all shop items
+        2 = create a new item
+        3 = list all orders
+        4 = create a new order")
+        expect(io).to receive(:gets).and_return(2)
+        allow(io).to receive(:puts).and_return("Enter item id: ")
+        allow(io).to receive(:gets).with(55)
+        allow(io).to receive(:puts).and_return("Enter item name")
+        allow(io).to receive(:gets).with("Item test name")
+        allow(io).to receive(:puts).and_return("Enter unit price")
+        allow(io).to receive(:gets).with(13.44)
+        allow(io).to receive(:puts).and_return("Enter the quantity of the item")
+        allow(io).to receive(:gets).with(5)
+        allow(io).to receive(:puts).and_return("Enter order identifier")
+        allow(io).to receive(:gets).with(3)
+        app.run
+      end
 end
