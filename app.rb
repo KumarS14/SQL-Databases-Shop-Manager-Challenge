@@ -16,9 +16,11 @@ class Application
     # so it can ask the item to enter some input
     # and then decide to run the appropriate action
     # or behaviour.
-    @io.puts "What would you like to do?
-    1 - List all items
-    2 - List all orders"
+    @io.puts "What do you want to do?
+      1 = list all shop items
+      2 = create a new item
+      3 = list all orders
+      4 = create a new order"
     table = @io.gets.chomp.to_i
    @item_repository.all.each{|i| @io.puts "item_name: #{i.item_name}  unit_price: #{i.unit_price} quantity: #{i.quantity} order_id #{i.order_id} "} if table === 1
    @order_repository.all.each{|i| @io.puts "title: #{i.title}  content: #{i.content} views: #{i.views}"} if table === 2
